@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NERD DEV. - Consultoria em Dados</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Bebas+Neue&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+
+    <style>
+        /* Custom Fonts */
+        body {
+            font-family: 'Abel', sans-serif;
+            background-color: #0A0A0A;
+            color: #FEECF3;
+        }
+        h1, h2, h3, .font-bebas {
+            font-family: 'Bebas Neue', sans-serif;
+        }
+        
+        /* Animated Gradient Background for Hero */
+        .animated-gradient {
+            background: linear-gradient(-45deg, #000000, #5C4D7D, #892B64, #000000);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* FAQ Accordion Styles */
+        details > summary {
+            cursor: pointer;
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary .accordion-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Vertical Stepper for Process Section */
+        .stepper-item:not(:last-child)::before {
+            content: '';
+            position: absolute;
+            left: 1.25rem; /* center of the circle */
+            top: 2.5rem; /* below the circle */
+            bottom: -1rem;
+            width: 2px;
+            background-color: #5C4D7D; /* accent-2 */
+            transform: translateX(-50%);
+        }
+    </style>
+
+    <script>
+        // Tailwind Customization
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#B7094C',
+                        'secondary': '#0091AD',
+                        'accent-1': '#892B64',
+                        'accent-2': '#5C4D7D',
+                        'accent-3': '#2E6F95',
+                        'light': '#FEECF3',
+                        'dark': '#000000',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="text-light">
+
+    <!-- Header -->
+    <header id="home" class="bg-dark/70 backdrop-blur-sm sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#home" class="text-3xl font-bebas tracking-wider">
+                NERD DEV.
+            </a>
+            <nav class="hidden lg:flex space-x-8">
+                <a href="#services" class="hover:text-primary transition-colors duration-300">Soluções</a>
+                <a href="#process" class="hover:text-primary transition-colors duration-300">Processo</a>
+                <a href="#tech" class="hover:text-primary transition-colors duration-300">Tecnologias</a>
+                <a href="#faq" class="hover:text-primary transition-colors duration-300">FAQ</a>
+                <a href="#about" class="hover:text-primary transition-colors duration-300">Sobre</a>
+            </nav>
+            <a href="#contact" class="hidden lg:block bg-primary hover:bg-opacity-80 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105">
+                Fale Conosco
+            </a>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="lg:hidden text-3xl">
+                ☰
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-dark px-6 pb-4 text-center">
+            <a href="#services" class="block py-2 hover:text-primary">Soluções</a>
+            <a href="#process" class="block py-2 hover:text-primary">Processo</a>
+            <a href="#tech" class="block py-2 hover:text-primary">Tecnologias</a>
+            <a href="#faq" class="block py-2 hover:text-primary">FAQ</a>
+            <a href="#about" class="block py-2 hover:text-primary">Sobre</a>
+            <a href="#contact" class="mt-4 inline-block bg-primary hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded-lg">
+                Fale Conosco
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="min-h-screen flex items-center justify-center animated-gradient">
+            <div class="container mx-auto px-6 text-center">
+                <div class="max-w-4xl mx-auto">
+                    <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-wider leading-tight text-white">
+                        Transformando Dados em Decisões Inteligentes
+                    </h1>
+                    <p class="mt-6 text-lg md:text-xl max-w-2xl mx-auto text-light/80">
+                        Sua consultoria especializada em Dashboards, Automação, ETL e Ciência de Dados para alavancar os resultados do seu negócio.
+                    </p>
+                    <a href="#contact" class="mt-10 inline-block bg-secondary hover:bg-opacity-80 text-white font-bold py-4 px-10 rounded-lg transition-transform duration-300 transform hover:scale-105 text-xl">
+                        Quero um Orçamento
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section (Grid) -->
+        <section id="services" class="py-20 md:py-28 bg-black">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl md:text-6xl font-bold">Nossas Soluções</h2>
+                    <p class="mt-4 text-lg text-light/70 max-w-2xl mx-auto">Potencializamos sua empresa com soluções de dados sob medida para cada desafio.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-dark/50 border border-accent-2 p-8 rounded-xl hover:border-primary hover:-translate-y-2 transition-all duration-300">
+                        <div class="text-primary text-4xl mb-4">📈</div>
+                        <h3 class="text-2xl font-bold mb-2">Dashboards e BI</h3>
+                        <p class="text-light/80">Painéis interativos que centralizam suas métricas e facilitam a tomada de decisão baseada em dados.</p>
+                    </div>
+                    <div class="bg-dark/50 border border-accent-2 p-8 rounded-xl hover:border-primary hover:-translate-y-2 transition-all duration-300">
+                        <div class="text-primary text-4xl mb-4">🤖</div>
+                        <h3 class="text-2xl font-bold mb-2">Automação de Dados</h3>
+                        <p class="text-light/80">Fluxos de trabalho (com ou sem N8N) para automatizar tarefas, economizando tempo e reduzindo erros.</p>
+                    </div>
+                    <div class="bg-dark/50 border border-accent-2 p-8 rounded-xl hover:border-primary hover:-translate-y-2 transition-all duration-300">
+                        <div class="text-primary text-4xl mb-4">⚙️</div>
+                        <h3 class="text-2xl font-bold mb-2">Engenharia de Dados (ETL)</h3>
+                        <p class="text-light/80">Extração, transformação e carga de dados, garantindo informações limpas e prontas para análise.</p>
+                    </div>
+                    <div class="bg-dark/50 border border-accent-2 p-8 rounded-xl hover:border-primary hover:-translate-y-2 transition-all duration-300">
+                        <div class="text-primary text-4xl mb-4">🧠</div>
+                        <h3 class="text-2xl font-bold mb-2">Ciência de Dados & MLOps</h3>
+                        <p class="text-light/80">Modelos de Machine Learning para prever tendências e sistemas inteligentes para gerar vantagem competitiva.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section (Vertical Stepper) -->
+        <section id="process" class="py-20 md:py-28 bg-dark/30">
+            <div class="container mx-auto px-6 max-w-3xl">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl md:text-6xl font-bold">Nosso Processo</h2>
+                    <p class="mt-4 text-lg text-light/70">Trabalhamos de forma transparente e colaborativa.</p>
+                </div>
+                <div class="space-y-12">
+                    <div class="relative flex items-start stepper-item">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white font-bold text-xl">1</div>
+                        <div class="ml-6">
+                            <h3 class="text-2xl font-bold">Diagnóstico e Estratégia</h3>
+                            <p class="mt-2 text-light/80">Entendemos suas dores, desafios e objetivos para definir o escopo do projeto e a melhor abordagem técnica.</p>
+                        </div>
+                    </div>
+                    <div class="relative flex items-start stepper-item">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white font-bold text-xl">2</div>
+                        <div class="ml-6">
+                            <h3 class="text-2xl font-bold">Desenvolvimento Ágil</h3>
+                            <p class="mt-2 text-light/80">Construímos a solução de dados com as melhores práticas, em ciclos curtos e com validações constantes junto à sua equipe.</p>
+                        </div>
+                    </div>
+                    <div class="relative flex items-start stepper-item">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white font-bold text-xl">3</div>
+                        <div class="ml-6">
+                            <h3 class="text-2xl font-bold">Entrega, Treinamento e Suporte</h3>
+                            <p class="mt-2 text-light/80">Implementamos a solução, treinamos sua equipe para extrair o máximo valor e oferecemos suporte contínuo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Technologies Section -->
+        <section id="tech" class="py-20 md:py-28 bg-black">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl md:text-6xl font-bold">Tecnologias que Dominamos</h2>
+                    <p class="mt-4 text-lg text-light/70">Utilizamos as ferramentas certas para cada desafio.</p>
+                </div>
+                <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-10 gap-x-6 gap-y-10 items-center justify-center">
+                    <div class="flex flex-col items-center justify-center h-full gap-3 text-center opacity-70 hover:opacity-100 transition-opacity">
+                        <img src="https://1000logos.net/wp-content/uploads/2022/12/Power-BI-Logo-2013.png" alt="Power BI logo" class="h-12 object-contain">
+                        <p class="text-sm font-semibold">Power BI</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-center h-full gap-3 text-center opacity-70 hover:opacity-100 transition-opacity">
+                        <img src="https://images.icon-icons.com/2699/PNG/512/python_logo_icon_168886.png" alt="Python logo" class="h-12 object-contain">
+                        <p class="text-sm font-semibold">Python</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-center h-full gap-3 text-center opacity-70 hover:opacity-100 transition-opacity">
+                        <img src="https://s3.us-west-2.amazonaws.com/content.podia.com/iiu3hb9rvquyj4iazcz8rhivdddr" alt="SQL logo" class="h-12 object-contain">
+                        <p class="text-sm font-semibold">SQL</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-center h-full gap-3 text-center opacity-70 hover:opacity-100 transition-opacity">
+                        <img src="https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/dark/n8n.png" alt="n8n logo" class="h-12 object-contain">
+                        <p class="text-sm font-semibold">N8N</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-center h-full gap-3 text-center opacity-70 hover:opacity-100 transition-opacity">
+                        <img src="https://funnel.io/hubfs/google-looker-logo.png" alt="Looker logo" class="h-12 object-contain">
+                        <p class="text-sm font-semibold">Looker</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-center h-full gap-3 text-center opacity-70 hover:opacity-100 transition-opacity">
+                        <img src="https://images.icon-icons.com/2699/PNG/512/databricks_logo_icon_170295.png" alt="Databricks logo" class="h-12 object-contain">
+                        <p class="text-sm font-semibold">Databricks</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-center h-full gap-3 text-center opacity-70 hover:opacity-100 transition-opacity">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1200px-Amazon_Web_Services_Logo.svg.png" alt="AWS logo" class="h-12 object-contain">
+                        <p class="text-sm font-semibold">AWS</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-center h-full gap-3 text-center opacity-70 hover:opacity-100 transition-opacity">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Spark-logo-192x100px.png" alt="Apache Spark logo" class="h-12 object-contain">
+                        <p class="text-sm font-semibold">PySpark</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-center h-full gap-3 text-center opacity-70 hover:opacity-100 transition-opacity">
+                        <img src="https://airflow.apache.org/docs/apache-airflow/1.10.6/_images/pin_large.png" alt="Apache Airflow logo" class="h-12 object-contain">
+                        <p class="text-sm font-semibold">Airflow</p>
+                    </div>
+                    <div class="flex flex-col items-center justify-center h-full gap-3 text-center opacity-70 hover:opacity-100 transition-opacity">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Microsoft_Azure.svg/1200px-Microsoft_Azure.svg.png" alt="Microsoft Azure logo" class="h-12 object-contain">
+                        <p class="text-sm font-semibold">Azure</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-20 md:py-28 bg-black">
+            <div class="container mx-auto px-6 max-w-3xl">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl md:text-6xl font-bold">Perguntas Frequentes</h2>
+                </div>
+                <div class="space-y-4">
+                    <details class="bg-dark/50 border border-accent-2 p-6 rounded-xl transition-all">
+                        <summary class="font-bold text-xl flex justify-between items-center">
+                            Quanto tempo leva para desenvolver um dashboard?
+                            <span class="accordion-arrow transition-transform duration-300">▼</span>
+                        </summary>
+                        <p class="mt-4 text-light/80">O tempo varia conforme a complexidade e a disponibilidade dos dados. Projetos simples podem levar de 1 a 2 semanas, enquanto soluções mais complexas podem levar mais tempo. O diagnóstico inicial nos dará uma estimativa precisa.</p>
+                    </details>
+                    <details class="bg-dark/50 border border-accent-2 p-6 rounded-xl transition-all">
+                        <summary class="font-bold text-xl flex justify-between items-center">
+                            Preciso ter uma infraestrutura de dados pronta?
+                            <span class="accordion-arrow transition-transform duration-300">▼</span>
+                        </summary>
+                        <p class="mt-4 text-light/80">Não necessariamente. Parte do nosso trabalho é ajudar a estruturar seu ambiente de dados. Podemos trabalhar com o que você já tem, desde planilhas a bancos de dados complexos, ou criar uma nova estrutura do zero.</p>
+                    </details>
+                    <details class="bg-dark/50 border border-accent-2 p-6 rounded-xl transition-all">
+                        <summary class="font-bold text-xl flex justify-between items-center">
+                            Qual o custo de uma consultoria?
+                            <span class="accordion-arrow transition-transform duration-300">▼</span>
+                        </summary>
+                        <p class="mt-4 text-light/80">O investimento depende do escopo e da complexidade do projeto. Trabalhamos com modelos flexíveis, seja por projeto ou por hora. Entre em contato para conversarmos sobre sua necessidade e montarmos uma proposta personalizada.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 md:py-28 bg-dark/30">
+            <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-2/5 flex justify-center">
+                   <img src="C:\Users\guilh\OneDrive\Área de Trabalho\Nova pasta (3)\Logotipo-Nerd-Dev---semfundo.png" alt="Logotipo Nerd Dev" class="w-48 h-48 object-contain">
+                </div>
+                <div class="md:w-3/5 text-center md:text-left">
+                    <h2 class="text-5xl md:text-6xl font-bold">Somos a NERD DEV.</h2>
+                    <p class="mt-6 text-lg text-light/80">
+                        Nascemos da paixão por tecnologia e da crença no poder dos dados. Nosso nome reflete nossa essência: a profundidade técnica de um "Nerd" com a capacidade de construção de um "Dev". Não apenas analisamos dados, nós construímos soluções robustas e eficientes que impulsionam o seu negócio para o futuro.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 md:py-28 bg-gradient-to-r from-primary to-secondary">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-white">Pronto para transformar seus dados em resultados?</h2>
+                <p class="mt-4 text-lg text-light/90 max-w-2xl mx-auto">Vamos conversar sobre o seu desafio. Nossa primeira conversa é sem compromisso.</p>
+                <div class="max-w-xl mx-auto mt-10">
+                    <form id="contact-form" action="https://formspree.io/f/YOUR_UNIQUE_ID" method="POST" class="bg-dark/50 border border-accent-2 p-8 rounded-xl">
+                        <div class="mb-4">
+                            <input type="text" id="name" name="name" placeholder="Seu nome" required class="w-full p-3 bg-light/10 border-2 border-transparent rounded-lg focus:outline-none focus:border-secondary placeholder:text-light/60">
+                        </div>
+                        <div class="mb-4">
+                            <input type="email" id="email" name="email" placeholder="Seu melhor email" required class="w-full p-3 bg-light/10 border-2 border-transparent rounded-lg focus:outline-none focus:border-secondary placeholder:text-light/60">
+                        </div>
+                        <div class="mb-6">
+                            <textarea id="message" name="message" rows="5" placeholder="Conte-nos um pouco sobre seu projeto..." required class="w-full p-3 bg-light/10 border-2 border-transparent rounded-lg focus:outline-none focus:border-secondary placeholder:text-light/60"></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="w-full bg-secondary hover:bg-opacity-80 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 text-lg transform hover:scale-105">
+                                Enviar Mensagem
+                            </button>
+                        </div>
+                    </form>
+                    <p id="form-status" class="mt-4 text-white"></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-center py-8">
+        <div class="container mx-auto px-6 flex flex-col items-center gap-4">
+            <p class="font-bebas text-2xl">NERD DEV.</p>
+            <p class="text-light/60">&copy; 2024 NERD DEV. - Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Script
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // Formspree Form Handling
+        const form = document.getElementById('contact-form');
+        const formStatus = document.getElementById('form-status');
+        async function handleFormSubmit(event) {
+            event.preventDefault();
+            const data = new FormData(event.target);
+            try {
+                const response = await fetch(event.target.action, {
+                    method: form.method,
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (response.ok) {
+                    formStatus.innerHTML = "Obrigado! Sua mensagem foi enviada.";
+                    form.reset();
+                } else {
+                    response.json().then(data => {
+                        if (Object.hasOwn(data, 'errors')) {
+                            formStatus.innerHTML = data["errors"].map(error => error["message"]).join(", ")
+                        } else {
+                            formStatus.innerHTML = "Oops! Ocorreu um problema ao enviar seu formulário."
+                        }
+                    })
+                }
+            } catch (error) {
+                formStatus.innerHTML = "Oops! Ocorreu um problema ao enviar seu formulário."
+            }
+        }
+        form.addEventListener("submit", handleFormSubmit)
+    </script>
+</body>
+</html>
